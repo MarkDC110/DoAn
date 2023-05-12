@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Laptop Consulting</title>
+</head>
+<body>
+	<!-- <h1>Laptop Consulting</h1>
+
+	<form>
+		<input type="text" name="message" id="message" placeholder="Type your message here">
+		<button type="button" onclick="sendMessage()">Send</button>
+	</form>
+
+	<div id="response"></div>
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		function sendMessage() {
+			var message = document.getElementById("message").value;
+
+			axios.post('http://localhost:5000/api/laptop-consulting/message', {
+                message: message
+            })
+            .then(function(response) {
+                console.log(response);
+                document.getElementById("response").innerHTML = response.data.message;
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+		}
+	</script> -->
+	<div class="chat-bubble-container">
+		<div class="chat-bubble">
+		  <div class="chat-message">Hello, how can I help you?</div>
+		  <div class="chat-close" onclick="hideChat()">X</div>
+		</div>
+		<div class="chat-icon" onclick="showChat()"><i class="fas fa-comment"></i>Y</div>
+	  </div>
+	  
+	  <script>
+		function showChat() {
+		  document.querySelector('.chat-bubble').style.display = 'block';
+		}
+	  
+		function hideChat() {
+		  document.querySelector('.chat-bubble').style.display = 'none';
+		}
+	  </script>
+</body>
+</html>

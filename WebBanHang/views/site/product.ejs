@@ -4,7 +4,7 @@
   <script type="text/javascript">
     document.title = '<%= data.name%>';
   </script>
-  <% } %>}
+  <% } %>
 <div id="maincontainer">
   <section id="product">
     <div class="container">      
@@ -40,19 +40,30 @@
                 </div>
               </div>
               <ul class="productpagecart" style="margin-top: 52px;">
-                <li><a class="cart" href="/cart/add/<%= data.id %>" style= "w">Add to Cart</a>
+                <li>
+                  <a class="cart" href="/cart/add/<%= data.id %>" style= "w">Add to Cart</a>
                 </li> 
+                <li>
+                  Số lượng còn: 3
+                </li>
               </ul>
               <!-- Product Description tab & comments-->
+              
               <div class="productdesc">
                 <ul class="nav nav-tabs" id="myTab">
-                  <li class="active"><a href="#description">MÔ TẢ SẢN PHẨM</a>
+                  <li class="active">
+                    <a href="#description">MÔ TẢ SẢN PHẨM</a>
                   </li>
-              
+                  <li class="active">
+                    <a href="#description">THÔNG SỐ KỸ THUẬT</a>
+                  </li>
+                  <li class="active">
+                    <a href="#description">CHẾ ĐỘ BẢO HÀNH</a>
+                  </li>
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane active" id="description">
-                    <h2>Chi Tiết Sản Phẩm</h2>
+                    <h2>Mô Tả Sản Phẩm</h2>
                     <%= data.description%>
                   </div>
                 </div>

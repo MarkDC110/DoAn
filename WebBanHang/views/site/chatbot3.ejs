@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Laptop Consulting Chatbot</title>
+	<!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <style>
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .chat-window {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5);
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .chat-window > h1{
+            margin-top: 0;
+            text-align: center;
+        }
+        .chat-output {
+            max-height: 400px; /* chiều cao tối đa là 400px */
+            overflow-y: auto; /* sử dụng thanh cuộn để hiển thị nội dung tin nhắn dài */
+          }
+        
+        .incoming-message{
+            float: left;
+            background-color: #009988;
+            color: #fff;
+            border-radius: 0px 10px 10px 10px;
+        }
+        
+        .incoming-message, .outgoing-message{
+            clear: both;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .outgoing-message {
+            float: right;
+            background-color: #0066d3;
+            color: #fff;
+            border-radius: 10px 0px 10px 10px;
+          }
+        
+        .chat-input{
+            clear: both;
+            padding: 30px;
+        }
+
+        .chat-input input[type="text"] {
+            float:left;
+            width: 75%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ffffff10;
+        }
+        
+        .chat-input button {
+            float: right;
+            width: 15%;
+            height: 10%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #0066d3;
+            color: #fff;
+        }        
+    </style>
+</head>
+<body>
+
+		<div class="chat-window">
+            <h1>tư vấn laptop</h1>
+			<div id="chat-output" class="chat-output"></div>
+			<div class="chat-input">
+				<input type="text" id="message" placeholder="Type your message...">
+				<button id="send-button" onclick="sendMessage()">Send</button>
+			</div>
+		</div>
+
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<!-- <script src="/chatbot.js"></script> -->
+    <script>
+        var chatOutput = document.getElementById("chat-output");// Lấy phần tử hiển thị tin nhắn
+        var messageInput = document.getElementById("message");
+
+        function sendMessage(message) {
+            var message = messageInput.value;
+            // Thêm tin nhắn mới vào phần tử hiển thị tin nhắn
+            chatOutput.innerHTML += '<div class="outgoing-message">' + message + '</div>';
+            // Cuộn đến tin nhắn mới nhất
+            chatOutput.lastChild.scrollIntoView();
+            messageInput.value = "";
+
+            axios.post('http://localhost:5000/api/laptop-consulting/message', {
+                message: message
+            })
+            .then(function(response) {
+                var botResponse = response.data.message;
+                chatOutput.innerHTML += '<div class="incoming-message">' + botResponse + '</div>';
+                // Cuộn đến tin nhắn mới nhất
+                chatOutput.lastChild.scrollIntoView();
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        }
+
+        document.getElementById("message").onkeydown = function(event) {
+            if (event.keyCode === 13) {
+              event.preventDefault(); // Ngăn chặn input xuống dòng khi nhấn Enter
+              sendMessage(); // Gọi hàm sendMessage
+            }
+          };
+    </script>
+</body>
+</html>

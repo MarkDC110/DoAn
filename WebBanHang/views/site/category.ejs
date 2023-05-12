@@ -16,15 +16,34 @@
         <aside class="span3">
          <!-- Category-->  
           <div class="sidewidt">
-            <h2 class="heading2"><span>Danh Mục Sản Phẩm</span></h2>
+            <h2 class="heading2"><span>Thương hiệu</span></h2>
             <ul class="nav nav-list categories">
-              <% categories.forEach(function(ca){ %>
+              <% brands.forEach(function(bra){ %>
                 <li>
-                  <a href="/danh-muc/<%= ca.urlRewriteName %>.<%= ca.id%>.html" ><%= ca.name%></a>
+                  <a href="/thuong-hieu/<%= bra.name %>.<%= bra.id%>.html" ><%= bra.name%></a>
                 </li>
-             
               <%})%>
-            </ul> 
+              <!-- <li>> HP</li>
+              <li>> DELL</li>
+              <li>> ASUS</li>
+              <li>> ACER</li>
+              <li>> LENOVO</li> -->
+            </ul>
+            <h2 class="heading2"><span>Mức Giá</span></h2> 
+            <ul>
+              <li>
+                <a href="/danh-muc/loc-muc-gia.<%= products[0].categoryId%>/2.10.html">>> dưới 10.000.000</a>
+              </li>
+              <li>
+                <a href="/danh-muc/loc-muc-gia.<%= products[0].categoryId%>/10.20.html">>> 10.000.000 - 20.000.000</a>
+              </li>
+              <li>
+                <a href="/danh-muc/loc-muc-gia.<%= products[0].categoryId%>/20.35.html">>> 20.000.000 - 35.000.000</a>
+              </li>
+              <li>
+                <a href="/danh-muc/loc-muc-gia.<%= products[0].categoryId%>/35.100.html">>> trên 35.000.000</a>
+              </li>
+            </ul>
           </div>
          <!--  Best Seller -->  
        
@@ -44,10 +63,8 @@
                 <section id="categorygrid">
                   <ul class="thumbnails grid">
                     <% products.forEach(function(pro){  %>
-                        <li class="span3">
-                        
+                        <li class="span3">                        
                         <div class="thumbnail">
-                          <div class="thumbnail">
                           <% if(pro.sale > 0) { %>
                             <span class="tooltip-test" style="background-color: red; color: white; font-size: 20px; z-index: 1000; position: absolute; top: 0; left: 0; padding: 6px 10px;">-<%= pro.sale %>%</span>
                           <% } %>

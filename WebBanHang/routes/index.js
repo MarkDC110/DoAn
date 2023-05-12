@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const CategoryModel = require('../models/category');
+const BrandModel = require('../models/brand');
 const OrderModel = require('../models/order');
 const OrderStatus = require('../constants/order-status');
 const Passport = require('../modules/passport');
@@ -69,18 +70,101 @@ router.get('/Payment.html', async (req, res) => {
   res.render('site/Payment');
 });
 
+router.get('/Chatbot.html', async (req, res) => {
+  res.render('site/chatbot3');
+})
+/*
+router.get('/Chatbot.html', async (req, res) => {
+  res.render('site/chatbot2', { messages: [] });
+});
+
+router.post('/message', async (req, res) => {
+  try {
+    const { message } = req.body;
+    const response = await axios.post('http://localhost:5000/api/laptop-consulting/message', {
+      message,
+    });
+    const botMessage = response.data.message;
+    res.json({ success: true, message: botMessage });
+  } catch (error) {
+    console.error(error);
+    res.json({ success: false, error: error.message });
+  }
+});*/
 
 router.get('/dangki.html', async (req, res) => {
   res.render('site/dangki');  
 });
 
+//         "/danh-muc/<%= bra.name %>.<%= bra.id%>.html
+router.get('/thuong-hieu/:name.:id.html', async(req,res)=>{
+  const model = {
+    categories: [],
+    products: [],
+    brands: []
+  };
+//  console.log(model.g1);
+//  console.log(model.g2);
+  model.categories = await CategoryModel.find(
+    {
+      isDeleted: false
+    }
+  ).lean();
+
+  model.brands = await BrandModel.find(
+    {
+      isDeleted: false
+    }
+  ).lean();
+  
+  model.products = await ProductModel.find(
+    {
+      brandId: req.params.id,
+      isDeleted: false
+    }
+  ).lean();
+//  console.log(model.products[0].categoryId);
+  res.render('site/brand',model);
+})
+
+router.get('/danh-muc/loc-muc-gia.:id/:m1.:m2.html', async(req,res)=>{
+  const model = {
+    categories: [],
+    products: [],
+    g1: req.params.m1,
+    g2: req.params.m2
+  };
+//  console.log(model.g1);
+//  console.log(model.g2);
+  model.categories = await CategoryModel.find(
+    {
+      isDeleted: false
+    }
+  ).lean();
+  model.products = await ProductModel.find(
+    {
+      categoryId: req.params.id,
+      isDeleted: false
+    }
+  ).lean();
+//  console.log(model.products[0].categoryId);
+  res.render('site/category2',model);
+})
+
 router.get('/danh-muc/:name.:id.html', async (req, res) => {
   const model = {
     categories: [],
-    products: []
+    products: [],
+    brands: []
   };
   
   model.categories = await CategoryModel.find(
+    {
+      isDeleted: false
+    }
+  ).lean();
+
+  model.brands = await BrandModel.find(
     {
       isDeleted: false
     }
@@ -92,9 +176,13 @@ router.get('/danh-muc/:name.:id.html', async (req, res) => {
       isDeleted: false
     }
   ).lean();
-  
+  // console.log(req.params.id);
+  // console.log(model.products[0].categoryId);
+  // console.log(model.categories.length);
   res.render('site/category', model);
 });
+
+
 
 router.get('/san-pham/:name.:productId.:categoryId.html', async (req, res) => {
   const model = {};
@@ -283,6 +371,7 @@ router.get('/huong-dan.html', async (req, res) => {
 router.get('/security.html', async (req, res) => {
   res.render('site/security');
 });
+
 
 
 module.exports = router;

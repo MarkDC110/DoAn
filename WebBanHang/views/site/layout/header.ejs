@@ -20,7 +20,137 @@
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
   <!-- fav -->
+  
   <link rel="shortcut icon" href="assets/ico/favicon.html">
+   <style>
+    
+    /*đầu trang*/
+    .headerstrip{
+      position: fixed;
+      top:0;
+      right: 0;
+      left: 0;
+      z-index: 9999;
+    }
+
+    .flexslider{
+      width: 87%;
+      margin-left: 89px;
+    }
+
+    .nav-pills{
+      margin-top: 120px !important;
+    }
+
+    /*nút bấm*/
+    .fixed-button {
+      position: fixed;
+      bottom: 50px;
+      right: 30px;
+      z-index: 9999;
+    }
+    
+    #chat-button {
+      position: absolute;
+      bottom: -34px;
+      right: -5px;
+      border-radius: 30px;
+
+      background-image: url('img/chatbot.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 60px;
+      height: 60px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #chat-box {
+      display: none; /* Ẩn khung chat ban đầu */
+    }
+    #chat-box.active {
+      display: block; /* Hiển thị khung chat khi có lớp active */
+    }
+    .flex-control-nav{
+      display: none;
+    }
+
+    /*form chat*/
+    .containerChat {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .chat-window {
+      max-width: 300px;
+      background-color: #e9e9e9;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 153, 136, 0.5);
+      padding: 15px;
+      margin-bottom: 30px;
+  }
+  .chat-window > h3{
+      margin-top: 0;
+      text-align: center;
+      border: 1px solid black;
+      border-radius: 10px;
+      margin: 0 0 10px 0;
+      padding: 5px;
+  }
+    .chat-output {
+        max-height: 400px; /* chiều cao tối đa là 400px */
+        min-height: 300px;
+        overflow-y: auto; /* sử dụng thanh cuộn để hiển thị nội dung tin nhắn dài */
+      }
+    
+    .incoming-message{
+        float: left;
+        background-color: #009988;
+        color: #fff;
+        border-radius: 0px 10px 10px 10px;
+        max-width: 75%;
+    }
+    
+    .incoming-message, .outgoing-message{
+        clear: both;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .outgoing-message {
+        float: right;
+        background-color: #0066d3;
+        color: #fff;
+        border-radius: 10px 0px 10px 10px;
+        max-width: 75%;
+      }
+    
+    .chat-input{
+        clear: both;
+    }
+
+    .chat-input input[type="text"] {
+        float: left;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        background-color: #ffffffe3;
+        box-shadow: 0 5px 20px rgba(0, 38, 255, 0.2);
+    }
+    
+    .chat-input button {
+        margin-left: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: #0066d3;
+        color: #fff;
+    }
+    /*trang cuối*/
+
+  </style> 
 </head>
 <body>
 <!-- Header Start -->
@@ -41,15 +171,16 @@
                     style="width: 220px; margin: -4px 60px 0 -15px;" />
                   </li>
                   <li><a class="home active" href="/">Trang chủ</a></li>
-                  <li><a  href="/huong-dan.html">Hướng Dẫn Mua Hàng</a></li>
-                <!-- <li><a  href="/security.html">Liên Hệ</a></li> --> 
-                  <li><a  href="/Payment.html">Chế Độ Bảo Hành</a></li>
+                  <li><a  href="/huong-dan.html">Giới thiệu</a></li>
+                  <li><a  href="/security.html">Chế độ bảo hành</a></li>
+                  <!-- <li><a  href="/Chatbot.html">ChatBot</a></li> -->
+                  <li><a  href="/Payment.html">Bài Viết</a></li>
                   <li><a class="shoppingcart" href="/gio-hang.html">Giỏ hàng</a></li>
                 </ul>
               </div>
             </div>
           </div>
-          <div class="pull-right">
+          <!-- <div class="pull-right">
             <div class="navbar" id="topnav">
               <div class="navbar-inner" style="padding-right: 0;">
                 <ul class="nav" >
@@ -58,7 +189,7 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class='pull-right' id="profile-right">
                     <ul class="info-menu right-links list-inline list-unstyled">
                         
@@ -67,19 +198,37 @@
           <!-- Top Nav End -->
         </div>
   </div>
+
   <div class="container">
-
-    <div id="categorymenu" style="padding:0px;">
+    <div id="categorymenu" style="padding: 0px;">
       <nav class="subnav">
-        <ul class="nav-pills categorymenu">       
-
+        <ul class="nav-pills categorymenu">      
 
         </ul>
       </nav>
     </div>
+  </div> 
+
+  <div class="fixed-button">
+    <button id="chat-button"></button>
+    <div id="chat-box">
+      <div class="chat-window">
+        <h3>tư vấn laptop</h3>
+        <div id="chat-output" class="chat-output">
+          <div class="incoming-message">Cửa hàng laptop CongNhat xin chào, mình có thể giúp cho bạn?</div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="message" placeholder="Nhập tin nhắn...">
+          <button id="send-button" onclick="sendMessage()">Gửi</button>
+        </div>
+      </div>
+    </div>
   </div>
-  
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/javascript">
+
+    //xử lý tìm kiếm
     var input = document.getElementById("search-keyword");
 
     input.addEventListener("keyup", function(event) {
@@ -87,5 +236,46 @@
         window.location.href = '/tim-kiem.html?keyword=' + input.value;
       }
     });
+
+    // xử lý nút bấm
+    const chatButton = document.getElementById("chat-button");
+    const chatBox = document.getElementById("chat-box");
+
+    chatButton.addEventListener("click", function() {
+      chatBox.classList.toggle("active"); // Thêm hoặc xóa lớp active
+    });
+
+    //xử lý gửi tin nhắn
+    var chatOutput = document.getElementById("chat-output");// Lấy phần tử hiển thị tin nhắn
+    var messageInput = document.getElementById("message");
+
+    function sendMessage(message) {
+        var message = messageInput.value;
+        // Thêm tin nhắn mới vào phần tử hiển thị tin nhắn
+        chatOutput.innerHTML += '<div class="outgoing-message">' + message + '</div>';
+        // Cuộn đến tin nhắn mới nhất
+        chatOutput.lastChild.scrollIntoView();
+        messageInput.value = "";
+
+        axios.post('http://localhost:5000/api/laptop-consulting/message', {
+            message: message
+        })
+        .then(function(response) {
+            var botResponse = response.data.message;
+            chatOutput.innerHTML += '<div class="incoming-message">' + botResponse + '</div>';
+            // Cuộn đến tin nhắn mới nhất
+            chatOutput.lastChild.scrollIntoView();
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+    }
+
+    document.getElementById("message").onkeydown = function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault(); // Ngăn chặn input xuống dòng khi nhấn Enter
+          sendMessage(); // Gọi hàm sendMessage
+        }
+      };
   </script>
 </header>
