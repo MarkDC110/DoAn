@@ -1,0 +1,114 @@
+{
+  "intents": [
+        {
+          "tag": "greeting",
+          "patterns": ["Xin chào", "Bạn ơi", "Chúc bạn ngày tốt lành","Shop ơi","Ê","ây"],
+          "responses": ["Xin chào, tôi có thể giúp gì được cho bạn?"],
+          "context_set": ""
+        },
+        {
+          "tag": "goodbye",
+          "patterns": ["Tạm biệt", "Tôi bận chút việc, tôi quay lại sau nhé","Bye bye shop"],
+          "responses": ["Tạm biệt, Lần sau ghé thăm mình tiếp nhé", "Tạm biệt, hẹn gặp lại bạn" ]
+        },
+        {
+          "tag": "thanks",
+          "patterns": ["Cảm ơn bạn", "Cảm ơn bạn đã tư vấn"],
+          "responses": ["Rất vui khi được tư vấn cho bạn"]
+        },
+        {
+          "tag": "fallback_responses",
+          "patterns": ["", " ", "sao", "không","gì"],
+          "responses": ["rất tiếc, tôi chưa hiểu vấn đề của bạn, bạn có thể giúp tôi hiểu hơn với một câu hỏi mới",
+          "xin lỗi, vấn đề của bạn có thể đã không thuộc lĩnh vực trợ giúp của tôi, bạn hãy đặt một câu hỏi mới, tôi sẽ gợi ý giúp bạn"],
+          "context_set": ""
+        },
+        {
+          "tag": "question1",
+          "patterns":["Dùng laptop gaming làm các công việc văn phòng có hiệu quả?"],
+          "responses":["Tất nhiên là được. Tuy nhiên, laptop gaming với hiệu suất cực kỳ cao do đó nó sẽ rất là nóng"]
+        },
+        {
+          "tag":"question2",
+          "patterns":["Laptop chơi game RAM là đủ?",
+            "Chọn laptop RAM là chiến được game shop",
+            "RAM bao nhiêu là chiến được game"],
+          "responses":["8GB RAM trở lên là mượt rồi nhé",
+            "Thường thì 8GB RAM trở lên là ổn rồi nha"]
+        },
+        {
+          "tag":"question3",
+          "patterns":["Nên chọn laptop dùng AMD hay Intel",
+            "AMD hay Intel nhỉnh hơn"],
+          "responses":["Việc lựa chọn Intel hay AMD phục thuộc nhiều vào nhu cầu và tài chính của bạn. Trong cùng một phân khúc giá thì các máy chạy AMD sẽ thường có trang bị nhỉnh hơn đôi chút so với Intel"]
+        },
+        {
+          "tag":"question4",
+          "patterns":["Macbook chơi game được không",
+            "Tôi có thể chơi game trên Macbook chứ"],
+          "responses":["Chạy OS Windows trên MAC là chơi được nhé",
+            "Tất nhiên là được rồi. Bạn truy cập gamevui.vn thì k thiếu trò chơi nha :V"]
+        },
+        {
+          "tag":"question5",
+          "patterns":["chọn laptop phù hợp như thé nào",
+            "Vậy chọn mua dòng, hãng laptop phù hợp nhất bằng cách nào?"],
+          "responses":["Bạn phải các định được những thứ sau: \"Đầu tiên là tài chính, Tiếp theo là nhu cầu, Cuối cùng là cấu hình\"",
+            " Bước 1: Bạn nhận định mình thích hãng laptop nào nhất, hoặc liệt kê ra các hãng laptop mà bạn đều thấy có vẻ ổn so vơi sở thích của các bạn. Bước 2: Bạn tìm kiếm trên google với cụm từ là : phân biệt các dòng + tên hãng laptop bạn đã chọn hoặc tương tự. Sau đó bạn sẽ tìm và đọc những bản so sánh và tìm các dòng phù hợp với nhu cầu của bạn" ]
+        },
+        {
+          "tag":"question6",
+          "patterns":["Chọn mua laptop hãng nào tốt?"],
+          "responses":["Hãng laptop nào cũng có điểm mạnh và điểm yếu riêng bạn nhé, tùy vào nhu cầu sử dụng mà bạn sẽ lựa chọn được hãng phù hợp với bản thân mình"]
+        },
+        {
+          "tag":"question7",
+          "patterns":["Có nên mua laptop cũ"],
+          "responses":["Việc mua laptop sẽ gặp khá nhiều rủi ro, bạn cần có kiến thức về các kỹ năng về máy tính hoặc người có kinh nghiệm tư vấn. Ngoài ra, cần tìm thêm cửa hàng uy tín và chế độ bảo hành rõ ràng"]
+        },
+        {
+          "tag":"question8",
+          "patterns":["Chọn cấu hình laptop như thế nào để học lập trình?",
+            "laptop học lập trình"],
+          "responses":["RAM tối thiểu 8GB, CPU Core i5 trở lên, ổ cứng SSD, Ưu tiên card đồ hoạ rời nếu cần thiết, Mỏng nhẹ, dễ di chuyển, Thời lượng pin tối thiểu 4 tiếng","Tôi nghĩ bạn nên mua MAC"]
+        },
+        {
+          "tag":"question9",
+          "patterns":["tư vấn laptop","mua laptop"],
+          "responses":["Bạn muốn mua laptop với mục đích gì?"]
+        },
+        {
+          "tag":"question10",
+          "patterns":["mua laptop để học design",
+            "ngành design nên chọn laptop như thế nào"],
+          "responses":["Bạn nên chọn laptop dựa trên tiêu chí sau:\"CPU Core i5 trở lên, RAM từ 8GB trở lên, Máy có card đồ họa rời,Ổ cứng lưu trữ tích hợp SSD để cài Win và HDD để lưu trữ, Khả năng tản nhiệt cao vì ứng dụng chạy đồ họa rất nặng, Kích thước màn hình lớn, độ phân giải, Hỗ trợ đa dạng cổng kết nối\""]
+        },
+        {
+          "tag":"question11",
+          "patterns":["Tôi là dân văn phòng",
+            "tác vụ văn phòng"],
+          "responses":["Bạn nên chọn laptop dựa trên tiêu chí sau:\"Thiết Kế Gọn Nhẹ, Thuận Tiện Di Chuyển, Bàn Phím Độ Nhạy Cao, CPU Core i3 + Ram 4GB trở lên, Độ bảo mật cao, thời lượng pin dài, độ bền bỉ cao, phù hợp với túi tiền\""]
+        },
+        {
+          "tag":"question12",
+          "patterns":["Tôi chơi game thì nên chọn laptop nào","laptop chơi game",
+            "Chọn laptop gaming"],
+          "responses":["Bạn nên chọn laptop dựa trên tiêu chí sau:\"CPU Core i5 trở lên, RAM từ 8GB trở lên, Máy có card đồ họa rời,Ổ cứng lưu trữ SSD để cài Win , Khả năng tản nhiệt cao vì chơi game máy rất nóng, Kích thước màn hình lớn, tốc độ phản hồi màn hình nhanh và độ phân giải cao, Hỗ trợ đa dạng cổng kết nối\""]
+        },
+        {
+          "tag":"question13",
+          "patterns":["có mẫu laptop nào"],
+          "responses":["Của hàng bên mình có đủ mọi dùng sản phẩm laptop phổ thông đến cao cấp, mục đích sử dụng laptop của bạn là gì?"]
+        },
+        {
+          "tag":"question14",
+          "patterns":["laptop giá rẻ"],
+          "responses":["nếu bạn muốn chọn laptop theo giá của sản phẩm, hãy sử dụng tìm kiếm sản phẩm theo bộ lọc giá từ thấp đến cao. hoặc bạn có thể cho tôi biết mục đích sử dụng máy tính của bạn, tôi sẽ gợi ý giúp bạn."]
+        },
+        {
+          "tag":"question15",
+          "patterns":["laptop có nhiều sinh viên chọn","giá sinh viên"],
+          "responses":["Sinh viên thưởng chọn mua máy có phân khúc giá từ 12.000.000 đồng đến 20.000.000 đồng, tùy vào nhu cầu sử dụng. bạn có thể tìm kiếm sản phẩm thep bộ lọc giá để tham khảo. hoặc bạn có thể cho tôi biết mục đích sử dụng máy tính của bạn, tôi sẽ gợi ý giúp bạn."]
+        }
+  ]
+}
